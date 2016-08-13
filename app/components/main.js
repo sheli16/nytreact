@@ -2,8 +2,8 @@
 var React = require('react');
 
 // Here we include all of the sub-components
-var Form = require('./Children/Form');
-var Results = require('./Children/Results');
+var Saved = require('./Children/Saved');
+var Search = require('./Children/Search');
 
 // Helper Function
 var helpers = require('./utils/helpers.js');
@@ -11,76 +11,37 @@ var helpers = require('./utils/helpers.js');
 // This is the main component. 
 var Main = React.createClass({
 
-	// Here we set a generic state associated with the number of clicks
-	getInitialState: function(){
-		return {
-			searchTerm: "",
-			results: ""
-		}
-	},	
-
-	// We use this function to allow children to update the parent with searchTerms.
-	setTerm: function(term){
-		this.setState({
-			searchTerm: term
-		})
-	},
-
-	// If the component updates we'll run this code
-	componentDidUpdate: function(prevProps, prevState){
- 
-		if(prevState.searchTerm != this.state.searchTerm){
-			console.log("UPDATED");
-
-			helpers.runQuery(this.state.searchTerm)
-				.then(function(data){
-					if (data != this.state.results)
-					{
-						console.log("HERE");
-						console.log(data);
-
-						this.setState({
-							results: data
-						})		
-					}
-
-
-				// This code is necessary to bind the keyword "this" when we say this.setState 
-				// to actually mean the component itself and not the runQuery function.
-				}.bind(this))		
-		}
-	},
-
 	// Here we render the function
 	render: function(){
 
 		return(
 
-			<div className="container">
+			<p><div className="panel panel-primary">
+              <div className="panel panel-default">
+                <div className="panel-heading">
+                  <h3 className="panel-title">Look up a News articles</h3>
+                   </div>
+                    <div className="panel-body">
 
-				<div className="row">
-
-					<div className="jumbotron">
-						<h2 className="text-center">Address Finder!</h2>
-						<p className="text-center"><em>Enter a landmark to search for its exact address (ex: "Eiffel Tower").</em></p>
-					</div>
-
-					<div className="col-md-6">
+                    <div className="col-md-9">
 					
-						<Form setTerm={this.setTerm}/>
+						<Saved setSaved={this.setSaved}/>
 
 					</div>
 
-					<div className="col-md-6">
+					<div className="col-md-9">
 				
-						<Results address={this.state.results} />
+						<Search Articles={this.state.Articles} />
 
 					</div>
 
 
-				</div>
 
-			</div>
+                   	</div>
+                </div>
+               </div>
+
+
 		)
 	}
 });

@@ -1,13 +1,19 @@
 // Include React 
 var React = require('react');
 
+// Here we include all of the sub-components
+var Saved = require('./GrandChild/Results');
+
+// Helper Function
+var helpers = require('./utils/helpers.js');
+
 // Component creation
 var Form = React.createClass({
 
 	// Here we set a generic state associated with the text being searched for
 	getInitialState: function(){
 		return {
-			term: ""
+			Articles: ""
 		}
 	},
 
@@ -27,10 +33,10 @@ var Form = React.createClass({
 	handleClick: function(){
 
 		console.log("CLICK");
-		console.log(this.state.term);
+		console.log(this.state.Articles);
 		
 		// Set the parent to have the search term
-		this.props.setTerm(this.state.term);
+		this.props.setArticles(this.state.Articles);
 
 	},
 
@@ -68,4 +74,4 @@ var Form = React.createClass({
 });
 
 // Export the component back for use in other files
-module.exports = Form;
+module.exports = Search;

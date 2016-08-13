@@ -2,8 +2,8 @@
 var React = require('react');
 
 // Here we include all of the sub-components
-var Saved = require('./Children/Saved');
-var Search = require('./Children/Search');
+var Form = require('./Children/Form');
+var Results = require('./Children/Results');
 
 // Helper Function
 var helpers = require('./utils/helpers.js');
@@ -56,56 +56,6 @@ var Main = React.createClass({
 
 		return(
 
-			<p><div className="panel panel-primary">
-              <div className="panel panel-default">
-                <div className="panel-heading">
-                  <h3 className="panel-title">Look up a News articles</h3>
-                   </div>
-                    <div className="panel-body">
-
-                    <div className="col-md-9">
-					
-						<Form setTerm={this.setTerm}/>
-
-					</div>
-
-					<div className="col-md-9">
-				
-						<Results address={this.state.results} />
-
-					</div>
-
-
-
-                   	</div>
-                </div>
-               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			<div className="container">
 
 				<div className="row">
@@ -115,7 +65,17 @@ var Main = React.createClass({
 						<p className="text-center"><em>Enter a landmark to search for its exact address (ex: "Eiffel Tower").</em></p>
 					</div>
 
+					<div className="col-md-6">
 					
+						<Form setTerm={this.setTerm}/>
+
+					</div>
+
+					<div className="col-md-6">
+				
+						<Results address={this.state.results} />
+
+					</div>
 
 
 				</div>

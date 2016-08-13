@@ -25,7 +25,7 @@ module.exports = (
 
 			{/*Child_search has its own Grandchildren_result options*/}
 			<Route path='GrandChild1' component={GrandChild_result} />
-			<Route path='GrandChild2' component={GrandChild_result2} />
+			
 
 			<IndexRoute component={Main} />
 

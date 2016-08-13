@@ -1,10 +1,8 @@
-/* Scraper: Server #2  (18.9) 
- * ========================= */
 
 // Initialize Express app
 var express = require('express');
 var app = express();
-var exphbs = require('express3-handlebars');
+var exphbs = require('express-handlebars');
 
 // Require request and cheerio. This makes the scraping possible
 var request = require('request');
@@ -14,7 +12,7 @@ var mongojs = require('mongojs');
 var databaseUrl = "nytreact";
 var collections = ["headlines"];
 var db = mongojs(databaseUrl, collections);
-
+var PORT = 3000;
 
 // first, tell the console what server2.js is doing
 console.log("\n******************************************\n" +
@@ -27,7 +25,7 @@ console.log("\n******************************************\n" +
 
 // Main Route. This route will redirect to our rendered React application
 app.get('/', function(req, res){
-  res.sendFile('./public/index.html');
+  res.sendFile('public');
 })
 
 // This is the route we will send GET requests to retrieve our most recent search data.
